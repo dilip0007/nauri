@@ -34,11 +34,13 @@ chromium.use(stealth);
         await page.waitForSelector('#usernameField', { timeout: 30000 });
 
         console.log('Entering credentials...');
-        await page.fill('#usernameField', email);
-        await page.fill('#passwordField', password);
+        await page.locator('#usernameField').pressSequentially(email, { delay: 100 });
+        await page.waitForTimeout(500); // Wait for React to ingest
+        await page.locator('#passwordField').pressSequentially(password, { delay: 100 });
 
         console.log('Submitting login...');
-        await page.click('button[type="submit"]');
+        await page.waitForTimeout(1000);
+        await page.locator('button[type="submit"]').click({ delay: 50 });
 
         console.log('Waiting for navigation after login...');
         await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => console.log('Navigation wait timed out, continuing...'));
