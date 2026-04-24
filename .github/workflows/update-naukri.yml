@@ -2,8 +2,8 @@ name: Update Naukri Profile
 
 on:
   schedule:
-    # Runs at 10:00 AM IST (04:30 UTC) every day
-    - cron: '30 4 * * *'
+    # Runs at the top of every hour
+    - cron: '0 * * * *'
   workflow_dispatch: # Allows manual trigger
 
 jobs:
