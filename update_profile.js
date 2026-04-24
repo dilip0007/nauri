@@ -80,6 +80,7 @@ chromium.use(stealth);
     } catch (err) {
         console.error('An error occurred:', err);
         await page.screenshot({ path: 'error.png', fullPage: true }).catch(() => { });
+        process.exit(1);
     } finally {
         await browser.close();
     }
