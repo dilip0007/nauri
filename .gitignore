@@ -1,3 +1,6 @@
 node_modules/
 *.png
 *.html
+.env
+run_update.sh
+cron_log.txt
