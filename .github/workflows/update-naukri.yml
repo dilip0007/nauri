@@ -1,0 +1,33 @@
+name: Update Naukri Profile
+
+on:
+  schedule:
+    # Runs at 10:00 AM IST (04:30 UTC) every day
+    - cron: '30 4 * * *'
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  update-profile:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install playwright
+
+    - name: Install Playwright Browsers
+      run: npx playwright install chromium --with-deps
+
+    - name: Run Profile Updater
+      env:
+        NAUKRI_EMAIL: ${{ secrets.NAUKRI_EMAIL }}
+        NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
+        HEADLESS: 'false'
+      run: xvfb-run --auto-servernum -- node update_profile.js
