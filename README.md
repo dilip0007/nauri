@@ -54,17 +54,17 @@ You can test the bot entirely locally anytime you want by just typing:
 ```
 
 ### 5. Automate It Forever (Background Cron Job)
-You can command your Mac to execute `run_update.sh` automatically (e.g., every 3 hours) completely invisibly in the background.
+You can command your Mac to execute `run_update.sh` automatically (every hour between 9 AM and 5 PM daily) completely invisibly in the background.
 
 1. Open your Mac Terminal.
 2. Type `crontab -e` and press Enter.
 3. This opens a text editor. Press the letter `i` on your keyboard to enter "Insert Mode".
 4. Copy and paste the following line:
    ```bash
-   0 */3 * * * /Users/dilipnigam/Documents/Naukri/run_update.sh
+   0 9-17 * * * /Users/dilipnigam/Documents/Naukri/run_update.sh
    ```
 5. Press the `Esc` key.
 6. Type `:wq` and press `Enter` to save and quit.
 
 ### How it works
-Your Mac will now automatically run the script every 3 hours. (If your laptop lid is completely closed and it is sleeping during the scheduled time, it will just pause and run moments after you open your laptop). All activity logs will be quietly saved into `cron_log.txt`.
+Your Mac will now automatically run the script every hour on the hour between 9 AM and 5 PM. (If your laptop lid is completely closed and it is sleeping during the scheduled time, it will simply skip that hour and run at the next scheduled time when you open your laptop). All activity logs will be quietly saved into `cron_log.txt`.
