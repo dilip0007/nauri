@@ -40,7 +40,7 @@ chromium.use(stealth);
 
         console.log('Submitting login...');
         await page.waitForTimeout(1000);
-        await page.locator('button[type="submit"]').click({ delay: 50 });
+        await page.getByRole('button', { name: 'Login', exact: true }).click({ delay: 50 });
 
         console.log('Waiting for navigation after login...');
         await page.waitForNavigation({ waitUntil: 'domcontentloaded', timeout: 60000 }).catch(() => console.log('Navigation wait timed out, continuing...'));
