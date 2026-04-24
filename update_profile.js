@@ -2,8 +2,13 @@ const { chromium } = require('playwright');
 
 (async () => {
     console.log('Starting Naukri Profile Updater...');
-    const email = process.env.NAUKRI_EMAIL || 'dilipnigam007@gmail.com';
-    const password = process.env.NAUKRI_PASSWORD || 'Satna@12345';
+    const email = process.env.NAUKRI_EMAIL;
+    const password = process.env.NAUKRI_PASSWORD;
+
+    if (!email || !password) {
+        console.error('Missing NAUKRI_EMAIL or NAUKRI_PASSWORD environment variables.');
+        process.exit(1);
+    }
 
     // In GitHub Actions, it's best to run headed via xvfb-run if headless gets blocked.
     // We'll configure it to run headless normally, but you can change it if blocked.
