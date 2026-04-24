@@ -79,6 +79,7 @@ chromium.use(stealth);
         console.log('Profile successfully updated!');
     } catch (err) {
         console.error('An error occurred:', err);
+        await page.screenshot({ path: 'error.png', fullPage: true }).catch(() => { });
     } finally {
         await browser.close();
     }

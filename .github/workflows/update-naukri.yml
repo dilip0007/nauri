@@ -31,3 +31,10 @@ jobs:
         NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
         HEADLESS: 'false'
       run: xvfb-run --auto-servernum -- node update_profile.js
+
+    - name: Upload error screenshot
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: error-screenshot
+        path: error.png
